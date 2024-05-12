@@ -1,5 +1,5 @@
-__version__ = "0.4.8.3"
-app_name = "Ask my PDF"
+__version__ = "1.0.0.0"
+app_name = "Multsent"
 
 
 # BOILERPLATE
@@ -60,23 +60,25 @@ def ui_spacer(n=2, line=False, next_n=0):
 
 def ui_info():
 	st.markdown(f"""
-	# Ask my PDF
-	version {__version__}
+	# Multsent
+	versão {__version__}
 	
-	Question answering system built on top of GPT3.
+	Ferramente de Análise de Sentimento construída sobre o GPT3.5.
 	""")
 	ui_spacer(1)
-	st.write("Made by [Maciej Obarski](https://www.linkedin.com/in/mobarski/).", unsafe_allow_html=True)
+	st.write("Feito por [Yuri Herbert](https://www.linkedin.com/in/yuri-herbert-5a3952109/).", unsafe_allow_html=True)
 	ui_spacer(1)
 	st.markdown("""
-		Thank you for your interest in my application.
-		Please be aware that this is only a Proof of Concept system
-		and may contain bugs or unfinished features.
-		If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV)
-		on Twitter for news and updates.
+		Obrigado pelo seu interesse na minha aplicação.
+		Esteja atento que essa é apenas uma prova de conceito 
+		para a disciplina de Projeto Final Integrador 2 
+		da [Universidade de Fortaleza](https://www.unifor.br/)
+		e pode conter alguns bugs e features incompletas.
+		Se você gostar desse app você pode [me seguir](https://twitter.com/Yur1Herbert)
+		no Twitter para novidades e atualizações.
 		""")
 	ui_spacer(1)
-	st.markdown('Source code can be found [here](https://github.com/mobarski/ask-my-pdf).')
+	st.markdown('O código fonte pode ser encontrado [aqui](https://github.com/mobarski/ask-my-pdf).')
 
 def ui_api_key():
 	if ss['community_user']:
@@ -93,7 +95,7 @@ def ui_api_key():
 		with t2:
 			st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 	else:
-		st.write('## 1. Enter your OpenAI API key')
+		st.write('## 1. Coloque a sua API key da OpenAi aqui ')
 		st.text_input('OpenAI API key', type='password', key='api_key', on_change=on_api_key_change, label_visibility="collapsed")
 
 def index_pdf_file():
@@ -120,7 +122,7 @@ def debug_index():
 	ss['debug']['index'] = d
 
 def ui_pdf_file():
-	st.write('## 2. Upload or select your PDF file')
+	st.write('## 2. Multsent')
 	disabled = not ss.get('user') or (not ss.get('api_key') and not ss.get('community_pct',0))
 	t1,t2 = st.tabs(['UPLOAD','SELECT'])
 	with t1:
@@ -192,6 +194,11 @@ def ui_question():
 	disabled = False
 	st.text_area('question', key='question', height=100, placeholder='Enter question here', help='', label_visibility="collapsed", disabled=disabled)
 
+def ui_sentimento():
+	st.write('## 2. Insira a sua review aqui'+(f' to {ss["filename"]}' if ss.get('filename') else ''))
+	disabled = False
+	st.text_area('question', key='question', height=100, placeholder='Coloque o texto a ser analisado aqui', help='', label_visibility="collapsed", disabled=disabled)
+
 # REF: Hypotetical Document Embeddings
 def ui_hyde_answer():
 	# TODO: enter or generate
@@ -216,14 +223,14 @@ def b_ask():
 		ss['feedback'].send(-1, ss, details=ss['send_details'])
 		ss['feedback_score'] = ss['feedback'].get_score()
 	score = ss.get('feedback_score',0)
-	c5.write(f'feedback score: {score}')
+	#c5.write(f'feedback score: {score}')
 	c4.checkbox('send details', True, key='send_details',
 			help='allow question and the answer to be stored in the ask-my-pdf feedback database')
 	#c1,c2,c3 = st.columns([1,3,1])
 	#c2.radio('zzz',['👍',r'...',r'👎'],horizontal=True,label_visibility="collapsed")
 	#
 	disabled = (not ss.get('api_key') and not ss.get('community_pct',0)) or not ss.get('index')
-	if c1.button('get answer', disabled=disabled, type='primary', use_container_width=True):
+	if c1.button('enviar', disabled=disabled, type='primary', use_container_width=True):
 		question = ss.get('question','')
 		temperature = ss.get('temperature', 0.0)
 		hyde = ss.get('use_hyde')
@@ -321,8 +328,9 @@ with st.sidebar:
 		ui_hyde_prompt()
 
 ui_api_key()
-ui_pdf_file()
-ui_question()
+#ui_pdf_file()
+ui_sentimento()
+#ui_question()
 ui_hyde_answer()
 b_ask()
 ui_output()

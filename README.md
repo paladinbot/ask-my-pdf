@@ -1,12 +1,11 @@
-# Ask my PDF
+# Multsent
 
 
 
-Thank you for your interest in my application. Please be aware that this is only a **Proof of Concept system** and may contain bugs or unfinished features. If you like this app you can ❤️ [follow me](https://twitter.com/KerbalFPV) on Twitter for news and updates.
+Obrigado pelo seu interesse na minha aplicação. Esteja atento que essa é apenas uma prova de conceito para a disciplina de Projeto Final Integrador 2 da [Universidade de Fortaleza](https://www.unifor.br/) e pode conter alguns bugs e features incompletas. Se você gostar desse app você pode [me seguir](https://twitter.com/Yur1Herbert) no Twitter para novidades e atualizações.
 
 
-
-### Ask my PDF - Question answering system built on top of GPT3
+### Multsent - Ferramente de Análise de Sentimento construída sobre o GPT3.5.
 
 
 
@@ -26,23 +25,23 @@ Thank you for your interest in my application. Please be aware that this is only
 
 
 
-### Installation
+### Instalação
 
 
 
-1. Clone the repo:
+1. Clone o repositório:
 
    `git clone https://github.com/mobarski/ask-my-pdf`
 
-2. Install dependencies:
+2. Instale as dependencias:
 
    `pip install -r ask-my-pdf/requirements.txt`
 
-3. Run the app:
+3. Rode o app:
 
    `cd ask-my-pdf/src`
    
-   `run.sh` or `run.bat`
+   `run.sh` ou `run.bat`
 
 
 
