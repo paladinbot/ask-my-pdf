@@ -3,6 +3,7 @@
 # TODO: Ignore OCR problems in the text below.
 
 TASK = {
+    'v7': ("Me explique o conceito da área de um círculo, e por que área de uma circunferencia não faz sentido"),
 	'v6': (
 			"Answer the question truthfully based on the text below. "
 			"Include verbatim quote and a comment where to find it in the text (page number). "
@@ -41,3 +42,4 @@ SUMMARY = {
 	'v2':'Describe the document from which the fragment is extracted. Omit any details.',
 	'v1':'Describe the document from which the fragment is extracted. Do not describe the fragment, focus on figuring out what kind document it is.',
 }
+
